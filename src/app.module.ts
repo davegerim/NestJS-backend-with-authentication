@@ -12,6 +12,7 @@ import { Profile } from './profile/entities/profile.entity';
 import { Otp } from './otp/entities/otp.entity';
 import { UserModule } from './user/user.module';
 import { OtpModule } from './otp/otp.module';
+import { ProfileModule } from './profile/profile.module';
 
 @Module({
   imports: [
@@ -26,19 +27,15 @@ import { OtpModule } from './otp/otp.module';
         password: configService.get('POSTGRES_PASSWORD'),
         database: configService.get('POSTGRES_DATABASE'),
         // ssl: true,
-        entities: [
-          User,
-          Profile,
-          Otp
-        ],
+        entities: [User, Profile, Otp],
         synchronize: true,
       }),
       inject: [ConfigService],
     }),
     AuthModule,
     UserModule,
-    OtpModule
-    ,
+    OtpModule,
+    ProfileModule,
   ],
   controllers: [AppController],
   providers: [
